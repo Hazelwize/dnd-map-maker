@@ -21,14 +21,29 @@
   justify-content: space-evenly;
   gap: 20px;
 }
-.main__container{
-  margin: 0 auto;
-  width: 1000px;
+.main__container {
   display:flex;
+  width:1000px;
   --s: 33.3333px;  /* size  */
   --m: 0px;    /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
 }
+
+.map__container {
+  font-size: 0; /*disable white space between inline block element */
+}
+
+.map__container .hexagon {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*1.1547); 
+  display: inline-block;
+  font-size:initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  background: rgba(0,255,0,.5);
+  margin-bottom: calc(var(--m) - var(--s)*0.2885); 
+}
+
 .map__container::before {
   content: "";
   width: calc(var(--s)/2 + var(--m));
@@ -39,17 +54,5 @@
                    #000  0 var(--f));
 }
 
-.map__container > div:hover{
-  transform: scale(1.08);
-}
-.hexagon{
-  box-sizing: border-box;
-  width: var(--s);
-  margin: var(--m);
-  height: calc(var(--s)*1.1547); 
-  display: inline-block;
-  font-size:initial;
-  background-color: rgba(0, 255, 0, 0.5);
-  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  margin-bottom: calc(var(--m) - var(--s)*0.2885); 
-}
+
+
