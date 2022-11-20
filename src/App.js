@@ -1,25 +1,20 @@
-import logo from './logo.svg';
+import {useState} from 'react'
+import SetupForm from './components/SetupForm'
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [tiles,setTiles] = useState(() => JSON.parse(window.localStorage.getItem('gameBoard')), [])
+  
+  const getTiles = () =>{
+    setTiles(JSON.parse(window.localStorage.getItem('gameBoard')))
+  }
+  return(
+    <div>
+      {!tiles  && <SetupForm setTiles={getTiles} />}
+
     </div>
-  );
+
+  )
 }
 
 export default App;
