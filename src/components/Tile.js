@@ -1,13 +1,11 @@
-import {useState} from 'react'
-
-const HexTile = ({color}) => {
+const Tile = ({changeTile, color, index}) => {
 
     return(
         <div 
-            onClick={}
+            onClick={() => changeTile(index)}
             style={{backgroundColor: color}}className="hexagon">
         </div>
     )
 }
 
-export default HexTile
+export default Tile

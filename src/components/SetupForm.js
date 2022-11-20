@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const SetupForm = ({setTiles}) => {
+const SetupForm = ({setGame}) => {
     const [url, setUrl] = useState('')
     const [count, setCount] = useState('')
     const [shape, setShape] = useState('square')
@@ -25,7 +25,7 @@ const SetupForm = ({setTiles}) => {
         setCount('')
         setShape('square')
         setUrl('')
-        setTiles()
+        setGame()
     }
     
     return (
