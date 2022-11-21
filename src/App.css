@@ -45,6 +45,9 @@
   background: rgba(0,255,0,.5);
   margin-bottom: calc(var(--m) - var(--s)*0.2885); 
 }
+.map__container .hexagon:hover{
+  transform: scale(.85);
+}
 
 .map__container::before {
   content: "";
