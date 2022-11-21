@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     if(!tiles && gameBoard){
-      let arr = Array.from({length:gameBoard.tileCount*25}).fill(true)
+      let arr = Array.from({length:(gameBoard.tileCount*25)-12}).fill(true)
       setTiles(arr)
     }
   },[gameBoard])
