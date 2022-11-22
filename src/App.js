@@ -4,13 +4,13 @@ import MapImg from './components/MapImg'
 import './App.css';
 
 function App() {
-  const [gameBoard,setGameBoard] = useState(() => JSON.parse(window.localStorage.getItem('gameBoard')), '')
+  const [gameBoard, setGameBoard] = useState(() => JSON.parse(window.localStorage.getItem('gameBoard')), '')
   // //gameBoard: {
   //   imgUrl: ,
+  //   height: ,
   //   tileCount:,
   //   tileShape:,
   // }
-  
   const [tiles, setTiles] = useState(() => JSON.parse(window.localStorage.getItem('tiles')), [])
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem('tiles', JSON.stringify(tiles))
   },[tiles])
-
+  
   const handleTileClick = (key) => {
     const arr = tiles.map((e,i) => i === key ? !e : e)
     setTiles(arr)
@@ -36,8 +36,10 @@ function App() {
   return(
     <div>
       {!gameBoard  && <SetupForm setGame={getGame} />}
+      {console.log('is height before this!!!')}
       {tiles && gameBoard && <MapImg 
-                        changeTile={handleTileClick} 
+                        changeTile={handleTileClick}
+                        height={gameBoard.height} 
                         tileType={gameBoard.tileShape} 
                         tiles={tiles} 
                         mapUrl={gameBoard.imgUrl}

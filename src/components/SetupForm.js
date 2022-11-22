@@ -4,7 +4,9 @@ const SetupForm = ({setGame}) => {
     const [url, setUrl] = useState('')
     const [count, setCount] = useState('')
     const [shape, setShape] = useState('square')
-    
+    const [height, setHeight] = useState('')
+    const [imgPreview, setImgPreview] = useState('')
+
     const handleImg = (e) => {
         setUrl(e.target.value)
     }
@@ -14,13 +16,23 @@ const SetupForm = ({setGame}) => {
     const handleShape = (e) => {
         shape ==='square' ? setShape('hexagon') : setShape('square')
     }
-    const handleSubmit = (e) =>{
-        e.preventDefault()       
+    const getPreview = (url)=> {
+        setImgPreview(url)
+    }
+    const getHeight = (e) => {
+        console.log(e.target.height)
+        setHeight((e.target.height).toFixed(4))
+    }
+    const handleSubmit = async(e) =>{
+        e.preventDefault()
+        
         const board = {
             imgUrl : url,
+            height: height,
             tileCount: count,
             tileShape: shape,
         }
+
         window.localStorage.setItem('gameBoard', JSON.stringify(board))
         setCount('')
         setShape('square')
@@ -32,7 +44,7 @@ const SetupForm = ({setGame}) => {
         <div className="form__container">
             <form className="form" onSubmit={(e) => handleSubmit(e)}>
                 <label> URL for the map image:
-                    <input className="form__input" onChange={(e) => handleImg(e)} value={url}  name='url' placeholder="image url" required/>
+                    <input onBlur={()=>{getPreview(url)}}className="form__input" onChange={(e) => handleImg(e)} value={url}  name='url' placeholder="image url" required/>
                 </label>
                 <label> How many tiles wide?
                     <input className="form__input" onChange={(e) => handleCount(e)} value={count}name='tile-number' placeholder="Number of tiles" required/>
@@ -47,6 +59,7 @@ const SetupForm = ({setGame}) => {
                 </label>
                 <button className="form__button" type='submit'>Make My Map!</button>
             </form>
+            {imgPreview && <img onLoad={(e) => getHeight(e)} src={imgPreview} style={{width:"1200px"}}></img>}
         </div>
     )
 }

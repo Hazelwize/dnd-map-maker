@@ -25,8 +25,8 @@
   
   margin: 50px auto;
   display:flex;
-  width:1000px;
-  --s: 33.3333px;  /* size  */
+  width: 1200px;
+  --s: 40px;  /* size  */
   --m: 0px;    /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
 }

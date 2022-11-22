@@ -1,10 +1,12 @@
 import Tile from './Tile'
 
-const MapImg = ({changeTile, color, tileType, tiles, mapUrl}) => {
+const MapImg = ({changeTile, height, color, tileType, tiles, mapUrl}) => {
     const mapStyles = {
         background: `url(${mapUrl}) 0 0 no-repeat`,
-        backgroundSize: 'contain',
-        height: '1000px',
+        backgroundSize: 'cover',
+        width: '1200px',
+        height: `${height}px`,
+        
     }
     return(
         <div id="mapImage" className="main__container">
