@@ -8,10 +8,11 @@ const MapImg = ({tiles, changeTile, tileWidth, height, color, tileType, mapUrl})
         height: `${height}px`,
         
     }
+    
     console.log(tileWidth)
     return(
         <div className="main__container" style={{'--s':`${tileWidth}px`}}>
-            <div className="map__container" style={mapStyles}>
+            <div className={tileType === 'hexagon'? "map__container--hex map__container": 'map__container'} style={mapStyles}>
                 {tiles.map((e,i) => {
                     if(e === true){
                         return <Tile className={tileType} changeTile={changeTile} key={i} index={i} color={color}/>

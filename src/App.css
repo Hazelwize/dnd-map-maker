@@ -49,7 +49,17 @@
   transform: scale(.85);
 }
 
-.map__container::before {
+.map__container .square{
+  z-index: 5;
+  width: var(--s);
+  margin: var(--m);
+  height: var(--s); 
+  display: inline-block;
+  font-size:initial;
+  background-color: rgba(0,255,0,.5);
+}
+
+.map__container--hex::before {
   content: "";
   width: calc(var(--s)/2 + var(--m));
   float: left;
