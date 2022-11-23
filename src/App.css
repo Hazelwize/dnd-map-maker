@@ -26,7 +26,6 @@
   margin: 50px auto;
   display:flex;
   width: 1200px;
-  --s: 40px;  /* size  */
   --m: 0px;    /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
 }
@@ -36,13 +35,14 @@
 }
 
 .map__container .hexagon {
+  z-index: 5;
   width: var(--s);
   margin: var(--m);
   height: calc(var(--s)*1.1547); 
   display: inline-block;
   font-size:initial;
   clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  background: rgba(0,255,0,.5);
+  background-color: rgba(0,255,0,.5);
   margin-bottom: calc(var(--m) - var(--s)*0.2885); 
 }
 .map__container .hexagon:hover{

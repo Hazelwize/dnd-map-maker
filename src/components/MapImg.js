@@ -1,6 +1,6 @@
 import Tile from './Tile'
 
-const MapImg = ({changeTile, height, color, tileType, tiles, mapUrl}) => {
+const MapImg = ({tiles, changeTile, tileWidth, height, color, tileType, mapUrl}) => {
     const mapStyles = {
         background: `url(${mapUrl}) 0 0 no-repeat`,
         backgroundSize: 'cover',
@@ -8,8 +8,9 @@ const MapImg = ({changeTile, height, color, tileType, tiles, mapUrl}) => {
         height: `${height}px`,
         
     }
+    console.log(tileWidth)
     return(
-        <div id="mapImage" className="main__container">
+        <div className="main__container" style={{'--s':`${tileWidth}px`}}>
             <div className="map__container" style={mapStyles}>
                 {tiles.map((e,i) => {
                     if(e === true){
