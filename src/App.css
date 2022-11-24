@@ -21,8 +21,22 @@
   justify-content: space-evenly;
   gap: 20px;
 }
+.game-select{
+  margin: 0 auto;
+  display: flex;
+  width: 1400px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.game-select__game{
+  width: 30%;
+  height: 200px;
+  background-position: 0 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .main__container {
-  
+  overflow: hidden;
   margin: 50px auto;
   display:flex;
   width: 1200px;
@@ -46,6 +60,9 @@
   margin-bottom: calc(var(--m) - var(--s)*0.2885); 
 }
 .map__container .hexagon:hover{
+  transform: scale(.85);
+}
+.map__container .square:hover{
   transform: scale(.85);
 }
 

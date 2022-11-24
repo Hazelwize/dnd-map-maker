@@ -15,9 +15,9 @@ const MapImg = ({tiles, changeTile, tileWidth, height, color, tileType, mapUrl})
             <div className={tileType === 'hexagon'? "map__container--hex map__container": 'map__container'} style={mapStyles}>
                 {tiles.map((e,i) => {
                     if(e === true){
-                        return <Tile className={tileType} changeTile={changeTile} key={i} index={i} color={color}/>
+                        return (<Tile className={tileType} changeTile={changeTile} key={i} index={i} color={color}/>)
                     }else{
-                        return <Tile className={tileType} changeTile={changeTile} key={i} index={i} color="transparent"/>
+                        return (<Tile className={tileType} changeTile={changeTile} key={i} index={i} color="transparent"/>)
                     }
                 })}
 

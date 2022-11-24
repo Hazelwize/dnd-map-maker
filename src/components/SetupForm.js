@@ -1,21 +1,23 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
-const SetupForm = ({setGame}) => {
+const SetupForm = ({addNewGame, addNewTiles, setGame}) => {
+    const [name, setName] = useState('')
     const [url, setUrl] = useState('')
     const [count, setCount] = useState('')
     const [shape, setShape] = useState('square')
     const [height, setHeight] = useState('')
     const [imgPreview, setImgPreview] = useState('')
 
+    const handleName = (e) => {
+        setName(e.target.value)
+    }
     const handleImg = (e) => {
         setUrl(e.target.value)
     }
     const handleCount = (e) => {
         setCount(e.target.value)
     }
-    const handleShape = (e) => {
-        shape ==='square' ? setShape('hexagon') : setShape('square')
-    }
+    
     const getPreview = (url)=> {
         setImgPreview(url)
     }
@@ -25,23 +27,37 @@ const SetupForm = ({setGame}) => {
     }
     const handleSubmit = async(e) =>{
         e.preventDefault()
-        
+        const id = String(Math.ceil(Math.random() * 999999))
+        const game = {
+            gameId : id,
+            tiles: []
+        }
         const board = {
+            id: id,
+            gameName: name,
             imgUrl : url,
             height: height,
             tileCount: count,
             tileShape: shape,
         }
+        addNewTiles(game)
+        addNewGame(board)
 
-        window.localStorage.setItem('gameBoard', JSON.stringify(board))
+        // window.localStorage.setItem('gameBoard', JSON.stringify(board))
         setCount('')
         setShape('square')
         setUrl('')
-        setGame()
+        setImgPreview('')
+        setHeight('')
+        setName('')
+        // setGame()
     }
     
     return (
         <div className="form__container">
+            <label> Campaign Name:
+                    <input className="form__input" onChange={(e) => handleName(e)} value={name}  name='name' placeholder="Campaign Name" required/>
+                </label>
             <form className="form" onSubmit={(e) => handleSubmit(e)}>
                 <label> URL for the map image:
                     <input onBlur={()=>{getPreview(url)}}className="form__input" onChange={(e) => handleImg(e)} value={url}  name='url' placeholder="image url" required/>
@@ -51,10 +67,10 @@ const SetupForm = ({setGame}) => {
                 </label>
                 <label className="form__container--radio"> Tile Shape:
                     <label>Hexagon 
-                        <input className="form__radio" onChange={(e) => handleShape(e)} type="radio" name="tile-shape" value="hexagon"/>
+                        <input className="form__radio" onClick={(e) => setShape('hexagon')} type="radio" name="tile-shape" value="hexagon"/>
                     </label>
                     <label>Square 
-                        <input className="form__radio" onChange={(e) => handleShape(e)} type="radio" name="tile-shape" value="square" checked/>
+                        <input className="form__radio" onClick={(e) => setShape('square')} type="radio" name="tile-shape" value="square" defaultChecked/>
                     </label>
                 </label>
                 <button className="form__button" type='submit'>Make My Map!</button>

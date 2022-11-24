@@ -1,24 +1,64 @@
 import {useState, useEffect} from 'react'
 import SetupForm from './components/SetupForm'
 import MapImg from './components/MapImg'
+import GameSelect from './components/GameSelect'
 import './App.css';
 
 function App() {
-  const [gameBoard, setGameBoard] = useState(() => JSON.parse(window.localStorage.getItem('gameBoard')), '')
-  // //gameBoard: {
-  //   imgUrl: ,
-  //   height: ,
-  //   tileCount:,
-  //   tileShape:,
+  const [games, setGames] = useState(() => JSON.parse(window.localStorage.getItem('games'), []))
+  const [gameBoard, setGameBoard] = useState('')
+  const [id, setId] = useState('')
+  //gameboard: {
+  //   id: id,
+  //   gameName: name,
+  //   imgUrl : url,
+  //   height: height,
+  //   tileCount: count,
+  //   tileShape: shape,
   // }
-  const [tiles, setTiles] = useState(() => JSON.parse(window.localStorage.getItem('tiles')), [])
-  const [tileWidth, setTileWidth] = useState();
+  const [tiles, setTiles] = useState([])
+  
+  const [tileWidth, setTileWidth] = useState(0);
   
   //Set width and height in tiles for total tile count
   // tile width= 1200/tileCount
   // tile height = tileWidth * .89425
   // img height / height = total tiles high
   // tilesHigh * tilesWide = total tiles
+  function addTiles(tiles){
+    window.localStorage.setItem(tiles.gameId, JSON.stringify([]))
+  }
+
+  function loadGame(index){
+    if(id !== games[index].id){
+      setTileWidth(0)
+      setId(games[index].id)
+      setTiles(() => window.localStorage.getItem(`${games[index].id}`))
+      setGameBoard(games[index])
+    }
+    console.log(games[index].id)
+    
+  }
+  useEffect(() => {
+    if(id){
+      const game = games.find(e => e.id === id)
+      setGameBoard(game)
+      setTiles(JSON.parse(window.localStorage.getItem(id)))
+    }
+  },[id])
+
+  function addGame(game){
+    if(games){
+      setGames([...games, game])
+    }else{
+      setGames([game])
+    }
+    
+  }
+  useEffect(()=> {
+    window.localStorage.setItem('games', JSON.stringify(games))
+  },[games])
+
   const getTotalSquareTiles = (tilesWide) =>{
     const wide = Number(tilesWide);
     const tilesHigh = gameBoard.height / (1200/wide)
@@ -40,9 +80,10 @@ function App() {
       return getTotalHexTiles(tilesWide)
     }
   }
-  
+
   useEffect(() => {
-    if(!tiles && gameBoard){
+    if(tiles.length === 0 && gameBoard){
+      console.log(gameBoard)
       const totalTiles = getTotalTiles(gameBoard.tileCount, gameBoard.tileShape)
       const arr = Array.from({length:totalTiles}).fill(true)
       setTiles(arr)
@@ -50,20 +91,26 @@ function App() {
     }else if(gameBoard){
       setTileWidth((1200/gameBoard.tileCount).toFixed(4))
     }
-  },[gameBoard])
+    console.log(tileWidth)
+    console.log(tiles)
+  },[gameBoard,tiles,tileWidth])
 
   useEffect(() => {
-    window.localStorage.setItem('tiles', JSON.stringify(tiles))
+    if(gameBoard.id){
+      window.localStorage.setItem(gameBoard.id , JSON.stringify(tiles))
+    }
   },[tiles])
+
+  console.log(gameBoard.id, tiles)
   
   const handleTileClick = (key) => {
     const arr = tiles.map((e,i) => i === key ? !e : e)
     setTiles(arr)
   }
 
-  const getGame = () =>{
-    setGameBoard(JSON.parse(window.localStorage.getItem('gameBoard')))
-  }
+  // const getGame = () =>{
+  //   setGameBoard(JSON.parse(window.localStorage.getItem('gameBoard')))
+  // }
   const handleReset = () => {
     const arr = tiles.map(e => e = true)
     setTiles(arr)
@@ -75,11 +122,11 @@ function App() {
     setGameBoard(() => JSON.parse(window.localStorage.getItem('gameBoard')), '')
     
   }
-
   return(
     <div>
-      {!gameBoard  && <SetupForm setGame={getGame} />}
-      {tiles && gameBoard && <MapImg 
+      {!gameBoard  && <SetupForm addNewGame={addGame} addNewTiles={addTiles}  />}
+      {games && <GameSelect selectGame={loadGame} items={games} />}
+      {tiles.length > 10 && tileWidth && gameBoard && <MapImg 
                         changeTile={handleTileClick}
                         height={gameBoard.height} 
                         tileType={gameBoard.tileShape}
