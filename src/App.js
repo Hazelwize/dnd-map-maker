@@ -147,7 +147,8 @@ function App() {
         </nav>}
       </div>
       <footer className='footer'>
-        <p>Created by <a className="footer__link"href="https://github.com/Hazelwize" target="_blank">Micah Jackson</a></p>
+        <p className="footer__text">Created by <a className="footer__link"href="https://github.com/Hazelwize" target="_blank">Micah Jackson</a></p>
+        <a href="https://www.buymeacoffee.com/hazelwize"><img className="coffee__img"src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=hazelwize&button_colour=212121&font_colour=ffffff&font_family=Poppins&outline_colour=ffffff&coffee_colour=FFDD00" /></a>
       </footer>
     </div>
 
