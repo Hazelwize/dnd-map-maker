@@ -55,27 +55,29 @@ const SetupForm = ({addNewGame, addNewTiles, setGame}) => {
     
     return (
         <div className="form__container">
-            <label> Campaign Name:
+            <form className="form" onSubmit={(e) => handleSubmit(e)}>
+                <label className="form__label"> Campaign Name:
                     <input className="form__input" onChange={(e) => handleName(e)} value={name}  name='name' placeholder="Campaign Name" required/>
                 </label>
-            <form className="form" onSubmit={(e) => handleSubmit(e)}>
-                <label> URL for the map image:
+                <label className="form__label"> URL for the map image:
                     <input onBlur={()=>{getPreview(url)}}className="form__input" onChange={(e) => handleImg(e)} value={url}  name='url' placeholder="image url" required/>
                 </label>
-                <label> How many tiles wide?
+                <label className="form__label"> How many tiles wide?
                     <input className="form__input" onChange={(e) => handleCount(e)} value={count}name='tile-number' placeholder="Number of tiles" required/>
                 </label>
-                <label className="form__container--radio"> Tile Shape:
-                    <label>Hexagon 
+                <label className="form__label form__container--radio"> Tile Shape:
+                    <label className="form__label form__radio--label">Hexagon 
                         <input className="form__radio" onClick={(e) => setShape('hexagon')} type="radio" name="tile-shape" value="hexagon"/>
                     </label>
-                    <label>Square 
+                    
+                    <label className="form__label form__radio--label">Square
                         <input className="form__radio" onClick={(e) => setShape('square')} type="radio" name="tile-shape" value="square" defaultChecked/>
                     </label>
+                    
                 </label>
                 <button className="form__button" type='submit'>Make My Map!</button>
             </form>
-            {imgPreview && <img onLoad={(e) => getHeight(e)} src={imgPreview} style={{width:"1200px"}}></img>}
+            {imgPreview && <img className="map--preview"onLoad={(e) => getHeight(e)} src={imgPreview} style={{width:"1200px"}}></img>}
         </div>
     )
 }

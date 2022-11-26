@@ -8,6 +8,8 @@ function App() {
   const [games, setGames] = useState(() => JSON.parse(window.localStorage.getItem('games'), []))
   const [gameBoard, setGameBoard] = useState('')
   const [id, setId] = useState('')
+  const [newMap, setNewMap] = useState(true)
+  const [gameSelect, setGameSelect] = useState(true)
   //gameboard: {
   //   id: id,
   //   gameName: name,
@@ -117,15 +119,19 @@ function App() {
   }
   const deleteGameBoard = () => {
     
-    window.localStorage.clear()
-    setTiles(() => JSON.parse(window.localStorage.getItem('tiles')), [])
-    setGameBoard(() => JSON.parse(window.localStorage.getItem('gameBoard')), '')
-    
+    const newGames = games.filter(e => e.id !== gameBoard.id)
+    setGames(newGames)
+    window.localStorage.removeItem(gameBoard.id)
+    setGameBoard('')    
   }
   return(
     <div>
-      {!gameBoard  && <SetupForm addNewGame={addGame} addNewTiles={addTiles}  />}
-      {games && <GameSelect selectGame={loadGame} items={games} />}
+      <nav className="nav">
+        <button className="form__button" onClick={()=>setNewMap(!newMap)}>{newMap? "Close Map Maker": "Make New Map"}</button>
+        <button className="form__button" onClick={()=>setGameSelect(!gameSelect)}>{gameSelect? "Hide Campaign Maps": "Show Campaign Maps"}</button>
+      </nav>
+      {newMap  && <SetupForm addNewGame={addGame} addNewTiles={addTiles}  />}
+      {games&& gameSelect && <GameSelect selectGame={loadGame} items={games} />}
       {tiles.length > 10 && tileWidth && gameBoard && <MapImg 
                         changeTile={handleTileClick}
                         height={gameBoard.height} 
@@ -134,9 +140,11 @@ function App() {
                         tiles={tiles} 
                         mapUrl={gameBoard.imgUrl}
                     />}
-
-      {tiles && gameBoard && <button onClick={() => handleReset()}>Reset Board</button>}
-      {tiles && gameBoard && <button onClick={() => deleteGameBoard()}>Delete Game Board</button>}
+      {tiles && gameBoard && <nav className="nav nav--bottom">
+        <button className="form__button" onClick={() => handleReset()}>Reset Board</button>
+        <button className="form__button" onClick={() => deleteGameBoard()}>Delete Game Board</button>
+      </nav>}
+      
 
     </div>
 
