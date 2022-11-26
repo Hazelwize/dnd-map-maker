@@ -93,8 +93,6 @@ function App() {
     }else if(gameBoard){
       setTileWidth((1200/gameBoard.tileCount).toFixed(4))
     }
-    console.log(tileWidth)
-    console.log(tiles)
   },[gameBoard,tiles,tileWidth])
 
   useEffect(() => {
@@ -102,8 +100,6 @@ function App() {
       window.localStorage.setItem(gameBoard.id , JSON.stringify(tiles))
     }
   },[tiles])
-
-  console.log(gameBoard.id, tiles)
   
   const handleTileClick = (key) => {
     const arr = tiles.map((e,i) => i === key ? !e : e)
