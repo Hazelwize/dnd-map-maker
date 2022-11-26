@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dnd-map-maker/static/css/main.cc4a9117.css",
-    "main.js": "/dnd-map-maker/static/js/main.bcaa8f9b.js",
+    "main.css": "/dnd-map-maker/static/css/main.82fba253.css",
+    "main.js": "/dnd-map-maker/static/js/main.bf89114f.js",
     "static/js/787.cc1b1afc.chunk.js": "/dnd-map-maker/static/js/787.cc1b1afc.chunk.js",
     "index.html": "/dnd-map-maker/index.html",
-    "main.cc4a9117.css.map": "/dnd-map-maker/static/css/main.cc4a9117.css.map",
-    "main.bcaa8f9b.js.map": "/dnd-map-maker/static/js/main.bcaa8f9b.js.map",
+    "main.82fba253.css.map": "/dnd-map-maker/static/css/main.82fba253.css.map",
+    "main.bf89114f.js.map": "/dnd-map-maker/static/js/main.bf89114f.js.map",
     "787.cc1b1afc.chunk.js.map": "/dnd-map-maker/static/js/787.cc1b1afc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc4a9117.css",
-    "static/js/main.bcaa8f9b.js"
+    "static/css/main.82fba253.css",
+    "static/js/main.bf89114f.js"
   ]
 }
