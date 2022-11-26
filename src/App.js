@@ -125,27 +125,30 @@ function App() {
     setGameBoard('')    
   }
   return(
-    <div>
-      <nav className="nav">
-        <button className="form__button" onClick={()=>setNewMap(!newMap)}>{newMap? "Close Map Maker": "Make New Map"}</button>
-        <button className="form__button" onClick={()=>setGameSelect(!gameSelect)}>{gameSelect? "Hide Campaign Maps": "Show Campaign Maps"}</button>
-      </nav>
-      {newMap  && <SetupForm addNewGame={addGame} addNewTiles={addTiles}  />}
-      {games&& gameSelect && <GameSelect selectGame={loadGame} items={games} />}
-      {tiles.length > 10 && tileWidth && gameBoard && <MapImg 
-                        changeTile={handleTileClick}
-                        height={gameBoard.height} 
-                        tileType={gameBoard.tileShape}
-                        tileWidth={tileWidth} 
-                        tiles={tiles} 
-                        mapUrl={gameBoard.imgUrl}
-                    />}
-      {tiles && gameBoard && <nav className="nav nav--bottom">
-        <button className="form__button" onClick={() => handleReset()}>Reset Board</button>
-        <button className="form__button" onClick={() => deleteGameBoard()}>Delete Game Board</button>
-      </nav>}
-      
-
+    <div className="app__container">
+      <div className="comp__container">
+        <nav className="nav">
+          <button className="form__button" onClick={()=>setNewMap(!newMap)}>{newMap? "Close Map Maker": "Make New Map"}</button>
+          <button className="form__button" onClick={()=>setGameSelect(!gameSelect)}>{gameSelect? "Hide Campaign Maps": "Show Campaign Maps"}</button>
+        </nav>
+        {newMap  && <SetupForm addNewGame={addGame} addNewTiles={addTiles}  />}
+        {games&& gameSelect && <GameSelect selectGame={loadGame} items={games} />}
+        {tiles.length > 10 && tileWidth && gameBoard && <MapImg 
+                          changeTile={handleTileClick}
+                          height={gameBoard.height} 
+                          tileType={gameBoard.tileShape}
+                          tileWidth={tileWidth} 
+                          tiles={tiles} 
+                          mapUrl={gameBoard.imgUrl}
+                      />}
+        {tiles && gameBoard && <nav className="nav nav--bottom">
+          <button className="form__button" onClick={() => handleReset()}>Reset Board</button>
+          <button className="form__button" onClick={() => deleteGameBoard()}>Delete Game Board</button>
+        </nav>}
+      </div>
+      <footer className='footer'>
+        <p>Created by <a className="footer__link"href="https://github.com/Hazelwize" target="_blank">Micah Jackson</a></p>
+      </footer>
     </div>
 
   )
