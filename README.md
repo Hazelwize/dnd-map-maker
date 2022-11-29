@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# DND Map Maker
+In DND this app creates what is known as the "Fog of War". It can take any map image url and cover it in hexagon/square tiles that can be clicked to reveal the map underneath. The tiles have a "green screen" color to allow the user to overlay any image they would like when using OBS. The map setup form allows you to set the campaign name, img URL, square or hexagon shape, and how many tiles wide you would like the map to be and the algorithm does the rest of the setup. The application will save your progress after each tile change and does not require an account to use. You can make multiple game maps with different save states for each one.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Link to project:** https://hazelwize.github.io/dnd-map-maker/
 
-## Available Scripts
+![image](https://user-images.githubusercontent.com/97214996/204402874-04821642-f3e3-4512-b19c-c8e6d1d9d3f4.png)
 
-In the project directory, you can run:
+## How It's Made:
 
-### `npm start`
+**Tech used:** React, HTML, CSS, JS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+I started building this app by thinking through the data structure I would need to hold all of my game maps and tiles. I have the tile state (clear or opaque) saved in an array that is created upon form submission. I created an ID linking the game to the tiles in order to keep the game itself separate from the tile state. This makes resetting the tiles much easier and allows the game select screen to load quickly without messing with a fairly large array. The number of tiles wide is used to calculate the total number of tiles in the whole image and creates an array from that number. I used this logic and local storage to build the bulk of this project as well as some CSS to polish it off. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Optimizations
 
-### `npm test`
+Changes I plan on making include setting tile color upon setup, allowing multi-select for the tiles, and having image offset for poorly cropped images. I will also be overlaying a grid to show how the tiles will look before completing setup.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Lessons Learned:
 
-### `npm run build`
+I learned a lot about data structures and algorithms in a really tangible way. I have studied quite a bit, but the hexagon calculation was a fairly large hurdle to jump. What awaited me on the other side was a great sense of accomplishment.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Examples:
+Take a look at these couple examples that I have in my own portfolio:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**PlayerToo:** https://github.com/Hazelwize/player-two
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**ReciPrint:** https://github.com/Hazelwize/reciprint
 
-### `npm run eject`
+**Daily Coding (DS & A):** https://github.com/Hazelwize/Daily-Coding
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
